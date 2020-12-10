@@ -1,9 +1,9 @@
-const { get } = require("lodash");
-
 const facebookVerifyCallbackController = (req, res) => {
   const VERIFY_TOKEN = process.env.WEBHOOK_FACEBOOK_VERIFY_KEY;
 
-  const { mode, verify_token: token, challenge } = get(req, "query.hub", {});
+  const mode = req.query["hub.mode"];
+  const token = req.query["hub.verify_token"];
+  const challenge = req.query["hub.challenge"];
 
   if (mode && token) {
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
