@@ -1,4 +1,4 @@
-const facebookVerifyCallbackController = (req, res) => {
+const verifyCallbackController = (req, res) => {
   const VERIFY_TOKEN = process.env.WEBHOOK_FACEBOOK_VERIFY_KEY;
 
   const mode = req.query["hub.mode"];
@@ -16,4 +16,19 @@ const facebookVerifyCallbackController = (req, res) => {
   return res.sendStatus(404);
 };
 
-module.exports = { facebookVerifyCallbackController };
+const webhookEventController = (req, res) => {
+  const body = req.body;
+
+  if (body.object === "page") {
+    body.entry.forEach((entry) => {
+      const webhookEvent = entry.messaging[0];
+      console.log(webhookEvent);
+    });
+
+    return res.status(200).send("EVENT_RECEIVED");
+  }
+
+  return res.sendStatus(404);
+};
+
+module.exports = { verifyCallbackController, webhookEventController };

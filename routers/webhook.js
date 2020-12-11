@@ -1,9 +1,6 @@
 // eslint-disable-next-line new-cap
 const router = require("express").Router();
-const {
-  facebookVerifyCallbackController,
-} = require("../controllers/webhooks/facebook");
 
-router.get("/facebook", facebookVerifyCallbackController);
+router.use("/facebook", require("./facebook"));
 
 module.exports = router;
