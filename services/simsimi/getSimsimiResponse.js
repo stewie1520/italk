@@ -6,19 +6,21 @@ const getSimsimiResponse = async ({ message }) => {
     const endpoint = process.env.SIMSIMI_API_ENDPOINT;
 
     const axiosParam = {
-      method: "get",
+      method: "post",
       url: endpoint,
-      params: {
-        key: process.env.SIMSIMI_API_ACCESS_TOKEN,
-        lc: "vn",
-        text: message,
+      headers: {
+        "x-api-key": process.env.SIMSIMI_API_ACCESS_TOKEN,
+      },
+      data: {
+        lang: "vn",
+        utext: message,
       },
     };
 
     const { data } = await axios(axiosParam);
-    const { response } = data;
+    const { atext } = data;
 
-    return returnSuccess(response);
+    return returnSuccess(atext);
   } catch (err) {
     return returnFail(err.message, err);
   }
