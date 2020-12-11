@@ -18,7 +18,7 @@ const verifyCallbackController = (req, res) => {
 
 const webhookEventController = (req, res) => {
   const body = req.body;
-  console.log(req.headers)
+
   if (body.object === "page") {
     body.entry.forEach((entry) => {
       const webhookEvent = entry.messaging[0];
