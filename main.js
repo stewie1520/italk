@@ -8,16 +8,20 @@ const webhookRouter = require("./routers/webhook");
 
 dotenv.config();
 
+require("./models/connect");
+
 const app = express();
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({
-  verify: (req, res, buf, encoding) => {
-    if (req.path.includes("/webhooks/facebook")) {
-      req.rawBody = buf;
-    }
-  }
-}));
+app.use(
+  bodyParser.json({
+    verify: (req, res, buf, encoding) => {
+      if (req.path.includes("/webhooks/facebook")) {
+        req.rawBody = buf;
+      }
+    },
+  })
+);
 
 app.use("/webhooks", webhookRouter);
 
