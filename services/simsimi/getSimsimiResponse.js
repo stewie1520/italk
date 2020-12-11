@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { returnSuccess, returnFail } = require("./common/serviceResponse");
+const { returnSuccess, returnFail } = require("../common/serviceResponse");
 
 const getSimsimiResponse = async ({ message }) => {
   try {
