@@ -34,7 +34,7 @@ const receiveFbMessage = async ({
     }
 
     await sendFbMessage({
-      psid: sendFbMessage.id,
+      psid: sender.id,
       message: simsimiResponse,
     });
 
