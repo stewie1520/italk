@@ -15,6 +15,7 @@ const saveUser = async ({ psid, asid }) => {
       {
         new: true,
         upsert: true,
+        useFindAndModify: false,
       }
     );
 

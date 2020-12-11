@@ -2,7 +2,11 @@ const { returnSuccess, returnFail } = require("./common/serviceResponse");
 const { checkForCommand, handleCommand } = require("./commands");
 const { saveUser } = require("./users/saveUser");
 
-const receiveFbMessage = async ({ sender, recipient, message }) => {
+const receiveFbMessage = async ({
+  sender,
+  recipient,
+  message: receivedMessage,
+}) => {
   try {
     const { success, message } = await saveUser({
       psid: sender.id,
@@ -13,8 +17,8 @@ const receiveFbMessage = async ({ sender, recipient, message }) => {
       return returnFail(message);
     }
 
-    if (checkForCommand(message)) {
-      return handleCommand({ sender, recipient, message });
+    if (checkForCommand(receivedMessage.text)) {
+      return handleCommand({ sender, recipient, message: receivedMessage });
     }
 
     return returnSuccess("yo");
