@@ -11,7 +11,13 @@ dotenv.config();
 const app = express();
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  verify: (req, res, buf) => {
+    if (req.baseUrl === "/webhooks") {
+      req.rawBody = buf;
+    }
+  }
+}));
 
 app.use("/webhooks", webhookRouter);
 
