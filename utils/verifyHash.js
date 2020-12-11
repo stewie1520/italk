@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const isValidFacebookWebhookRequest = (hashed, payload, secret) => {
   const base64Hased = crypto.createHmac('sha1', secret)
     .update(payload)
-    .digest('base64');
+    .digest('hex');
 
   console.log(`sha1=${base64Hased}`)
   console.log(`hashed: ${hashed}`)
