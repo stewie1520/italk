@@ -8,6 +8,6 @@ const {
 const { webhookEventController } = require("../controllers/webhooks/facebook");
 
 router.get("/", verifyCallbackController);
-router.post("/", validateFacebookWebhook, webhookEventController);
+router.post("/", webhookEventController);
 
 module.exports = router;

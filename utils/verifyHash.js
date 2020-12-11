@@ -5,9 +5,6 @@ const isValidFacebookWebhookRequest = (hashed, payload, secret) => {
     .update(payload)
     .digest('hex');
 
-  console.log(`sha1=${base64Hased}`)
-  console.log(`hashed: ${hashed}`)
-
   return `sha1=${base64Hased}` === hashed;
 };
 
