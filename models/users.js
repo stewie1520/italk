@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const name = __filename;
+const name = "users";
 
 const userSchema = new Schema(
   {
