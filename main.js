@@ -13,7 +13,7 @@ app.use(morgan("combined", { stream: logger.stream }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({
   verify: (req, res, buf) => {
-    if (req.baseUrl === "/webhooks") {
+    if (req.path.includes("/webhooks/facebook")) {
       req.rawBody = buf;
     }
   }
