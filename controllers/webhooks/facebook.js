@@ -22,7 +22,6 @@ const webhookEventController = (req, res) => {
   if (body.object === "page") {
     body.entry.forEach((entry) => {
       const webhookEvent = entry.messaging[0];
-      console.log(webhookEvent);
     });
 
     return res.status(200).send("EVENT_RECEIVED");
