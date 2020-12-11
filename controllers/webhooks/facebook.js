@@ -1,3 +1,5 @@
+const { receiveFbMessage } = require("../../services/receiveFbMessage");
+
 const verifyCallbackController = (req, res) => {
   const VERIFY_TOKEN = process.env.WEBHOOK_FACEBOOK_VERIFY_KEY;
 
@@ -20,8 +22,13 @@ const webhookEventController = (req, res) => {
   const body = req.body;
 
   if (body.object === "page") {
-    body.entry.forEach((entry) => {
+    body.entry.forEach(async (entry) => {
       const webhookEvent = entry.messaging[0];
+      if (webhookEvent.message) {
+        await receiveFbMessage(webhookEvent);
+      } else if (webhookEvent.postback) {
+        // TODO: add handler for postback
+      }
     });
 
     return res.status(200).send("EVENT_RECEIVED");
