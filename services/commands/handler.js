@@ -1,7 +1,7 @@
 const constants = require("./constants");
 const { sendFbMessage } = require("../sendFbMessage");
 const { returnSuccess, returnFail } = require("../common/serviceResponse");
-const { translate } = require("tratu/index");
+const { translate } = require("tratu-core");
 
 const checkForCommand = (text) =>
   Object.values(constants).includes(text) ||

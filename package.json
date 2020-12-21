@@ -19,6 +19,7 @@
     "mongoose": "^5.11.7",
     "morgan": "^1.10.0",
     "tratu": "^2.2.0",
+    "tratu-core": "^2.2.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
