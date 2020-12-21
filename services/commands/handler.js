@@ -1,9 +1,11 @@
 const constants = require("./constants");
 const { sendFbMessage } = require("../sendFbMessage");
 const { returnSuccess, returnFail } = require("../common/serviceResponse");
-const { translate } = require("tratu");
+const { translate } = require("tratu/index");
 
-const checkForCommand = (text) => Object.values(constants).includes(text);
+const checkForCommand = (text) =>
+  Object.values(constants).includes(text) ||
+  text.startsWith(constants.TRANSLATE_ENV_VI);
 
 const handleCommand = async () => {
   try {
