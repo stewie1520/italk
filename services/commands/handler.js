@@ -7,7 +7,7 @@ const checkForCommand = (text) =>
   Object.values(constants).includes(text) ||
   text.startsWith(constants.TRANSLATE_ENV_VI);
 
-const handleCommand = async () => {
+const handleCommand = async ({ sender, recipient, message }) => {
   try {
     if (message.text === constants.START_CONVERSATION) {
       await sendFbMessage({ psid: sender.id, message: "Hello" });
